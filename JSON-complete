@@ -1,0 +1,378 @@
+{
+    "personalInfo": {
+        "fullname": "Íngrid Soler Casanovas ",
+        "name": "Íngrid",
+        "surname1": "Soler",
+        "surname2": "Casanovas",
+        "age": "120 Años",
+        "bithdate": 497746800000,
+        "email": "Íngrid",
+        "address": {
+            "street": "Address street 10, 13",
+            "city": "Sydney\n",
+            "zipCode": "46460",
+            "completeaddess": "Address street 10, 13, 46460 Sydney\n (Australia\n)"
+        },
+        "gender": "M"
+    },
+    "digitalServices": {
+        "activeList": [
+            {
+                "imageSystem": "https://cms-assets.tutsplus.com/uploads/users/107/posts/24710/image/35-flat-animals-fox.jpg",
+                "urlSystem": "https://www.google.com/",
+                "longDescSystem": "Servicios de teleasistencia a domicilio"
+            },
+            {
+                "imageSystem": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg",
+                "urlSystem": "https://www.youtube.com/",
+                "longDescSystem": "Portal de salud pac"
+            }
+        ],
+        "inactiveList": [
+            {
+                "imageSystem": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg",
+                "urlSystem": "https://www.everis.com/peru/es/home-peru",
+                "longDescSystem": "Servicios de teleasistencia a domicilio"
+            },
+            {
+                "imageSystem": "https://cms-assets.tutsplus.com/uploads/users/107/posts/24710/image/35-flat-animals-fox.jpg",
+                "urlSystem": "https://www.google.com/",
+                "longDescSystem": "Geolocalización de asistencia médica"
+            },
+            {
+                "imageSystem": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg",
+                "urlSystem": "https://www.youtube.com/",
+                "longDescSystem": "Historia clinica conectada"
+            },
+            {
+                "imageSystem": "https://cms-assets.tutsplus.com/uploads/users/107/posts/24710/image/35-flat-animals-fox.jpg",
+                "urlSystem": "https://www.google.com/",
+                "longDescSystem": "Servicios de contacto del paciente inmovil"
+            },
+            {
+                "imageSystem": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg",
+                "urlSystem": "https://www.google.com/",
+                "longDescSystem": "Gestión de pacientes dependientes"
+            },
+            {
+                "imageSystem": "https://cms-assets.tutsplus.com/uploads/users/107/posts/24710/image/35-flat-animals-fox.jpg",
+                "urlSystem": "https://www.google.com/",
+                "longDescSystem": "Laboratorio de resultados"
+            },
+            {
+                "imageSystem": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg",
+                "urlSystem": "https://www.google.com/",
+                "longDescSystem": "Citación en linea para citas especializadas"
+            }
+        ]
+    },
+    "activities": [
+        {
+            "color": "#FFB9EE",
+            "title": "Pruebas",
+            "subTitle": "Sample description for an Appointment activity.",
+            "date": "05/11/2021 a las 00:00",
+            "completeDate": 1348376400000,
+            "center": "CENTRO_TEST",
+            "planned": false
+        },
+        {
+            "color": "#B7F0F9",
+            "title": "Pruebas",
+            "subTitle": "Sample description for an Appointment activity.",
+            "date": "05/11/2021 a las 00:00",
+            "completeDate": 1442984400000,
+            "center": "CENTRO_TEST",
+            "planned": false
+        },
+        {
+            "color": "#95D3AA",
+            "title": "Pruebas",
+            "subTitle": "Sample description for an Appointment activity.",
+            "date": "05/11/2021 a las 00:00",
+            "completeDate": 1600837200000,
+            "center": "CENTRO_TEST",
+            "planned": false
+        },
+        {
+            "color": "#FCF5E1",
+            "title": "Pruebas",
+            "subTitle": "Sample description for an Appointment activity.",
+            "date": "05/11/2021 a las 00:00",
+            "completeDate": 1569214800000,
+            "center": "CENTRO_TEST",
+            "planned": false
+        },
+        {
+            "color": "#FCF5E1",
+            "title": "Pruebas",
+            "subTitle": "Sample description for an Appointment activity.",
+            "date": "05/11/2021 a las 00:00",
+            "completeDate": 1569214800000,
+            "center": "CENTRO_TEST",
+            "planned": false
+        }
+    ],
+    "communications": [
+        {
+            "subject": "Subjectsample",
+            "description": "DescriptionsampleDescriptionsampleDescriptionsampleDescriptionsampleDescriptionsample",
+            "dateCommunication": 1606947005000,
+            "url": "https://www.youtube.com/",
+            "priorityTypeCode": "LOW_PRIORITY",
+            "backgroundColor": "#DEF0D8",
+            "imageSystem": "https://cms-assets.tutsplus.com/uploads/users/107/posts/24710/image/35-flat-animals-fox.jpg"
+        },
+        {
+            "subject": "SubjectsampleOne",
+            "description": "DescriptionsamplePrueba",
+            "dateCommunication": 1606932605000,
+            "url": "https://www.youtube.com/",
+            "priorityTypeCode": "HIGH_PRIORITY",
+            "backgroundColor": "#F1DFDD",
+            "imageSystem": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg"
+        },
+        {
+            "subject": "SubjectsampleTwo",
+            "description": "DescriptionsamplePrueba",
+            "dateCommunication": 1291313405000,
+            "url": "https://www.google.com",
+            "priorityTypeCode": "MEDIUM_PRIORITY",
+            "backgroundColor": "#FCE9B1",
+            "imageSystem": "https://cms-assets.tutsplus.com/uploads/users/107/posts/24710/image/35-flat-animals-fox.jpg"
+        },
+        {
+            "subject": "SubjectsampleThree",
+            "description": "DescriptionsamplePrueba",
+            "dateCommunication": 1449079805000,
+            "url": "https://www.youtube.com/",
+            "priorityTypeCode": "LOW_PRIORITY",
+            "backgroundColor": "#DEF0D8",
+            "imageSystem": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg"
+        }
+        
+    ],
+    "contactAddresses": [
+        {
+            "main": true,
+            "fullAddress": "Sample street, 46460 Silla (España)",
+            "address": "Sample street Rúa Outero ",
+            "postCode": 46460,
+            "city": "Silla",
+            "province": "Valencia",
+            "country": "España",
+            "mail1": "jalmendg@everis.com",
+            "mail2": "jalmendg@everis.com",
+            "telephone1": 666666666,
+            "telephone2": 666666669,
+            "modificationText": "Modificar",
+            "titleOther": "Sample description cat"
+        },
+        {
+            "main": false,
+            "fullAddress": "other Sample street, 46469 Picassent (Portugal)",
+            "address": "other Sample street",
+            "postCode": 46469,
+            "city": "Picassent",
+            "province": "Madrid",
+            "country": "Portugal",
+            "mail1": "jalmendg@everis.com",
+            "mail2": "jalmendg@everis.com",
+            "telephone1": 999999996,
+            "telephone2": 999999999,
+            "modificationText": "Modificar",
+            "titleOther": "Sample description cat"
+        },
+        {
+            "main": false,
+            "fullAddress": "other Sample street (Portugal)",
+            "address": "Sample street",
+            "postCode": 44569,
+            "city": "Picassent",
+            "province": "Madrid",
+            "country": "Portugal",
+            "mail1": "jalmendg@everis.com",
+            "mail2": "jalmendg@everis.com",
+            "telephone1": 999999996,
+            "telephone2": 999999999,
+            "modificationText": "Modificar",
+            "titleOther": "Sample"
+        }
+    ],
+    "timelineContent": [
+        {
+            "title": "Cita primaria",
+            "icon": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg",
+            "color": "#FF857D",
+            "date": 1603705077590,
+            "dateString": "26/10/2020",
+            "subtitle": "SUBJECT 1",
+            "content": "",
+            "tooltip": "Actividad: Sugerencia\r\nFecha: 26/10/2020\r\nPrioridad: Alta\r\nTipo: Reclamación\r\nTítulo: SUBJECT 2\r\nDescripción: DESCRIPTION 2",
+            "digital": true
+        },
+        {
+            "title": "Cita especializada",
+            "icon": "https://cms-assets.tutsplus.com/uploads/users/107/posts/24710/image/35-flat-animals-fox.jpg",
+            "color": "#F9CD82",
+            "date": 1603705077590,
+            "dateString": "26/10/2020",
+            "subtitle": "SUBJECT 2",
+            "content": "Alta de usuario en la aplicación2",
+            "tooltip": "Actividad: Sugerencia\r\nFecha: 26/10/2020\r\nPrioridad: Baja\r\nTipo: Aportación\r\nTítulo: SUBJECT 1\r\nDescripción: DESCRIPTION 1",
+            "digital": true
+        },
+        {
+            "title": "Intervenciones",
+            "icon": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg",
+            "color": "#95D3AA",
+            "date": 1603441957419,
+            "dateString": "23/10/2020",
+            "subtitle": "SUBJECT 3",
+            "content": "Alta de usuario en la aplicación3",
+            "tooltip": "Actividad: Solicitud de soporte\r\nFecha: 23/10/2020\r\nPrioridad: Alta\r\nTipo: Default\r\nTítulo: Caso de soporte 2\r\nEstado: Visible",
+            "digital": true
+        },
+        {
+            "title": "Pruebas",
+            "icon": "https://cms-assets.tutsplus.com/uploads/users/107/posts/24710/image/35-flat-animals-fox.jpg",
+            "color": "#83B6D5",
+            "date": 1603441925910,
+            "dateString": "23/10/2020",
+            "subtitle": "Portal de salud",
+            "content": "Alta de usuario en la aplicación4",
+            "tooltip": "Actividad: Contacto digital\r\nFecha: 23/10/2020\r\nSistema: Portal de salud\r\nTipo: Alta de usuario en la aplicación\r\nDescripción: Contacto digital 1",
+            "digital": true
+        },
+        {
+            "title": "Episodios de urgencias",
+            "icon": "https://cdn.pixabay.com/photo/2017/11/27/18/08/fox-2981884_960_720.jpg",
+            "color": "#FFB9EE",
+            "date": 1603441925910,
+            "dateString": "23/10/2020",
+            "subtitle": "Servicios de teleasistencia a domicilio",
+            "content": "Alta de reclamación5",
+            "tooltip": "Actividad: Contacto digital\r\nFecha: 23/10/2020\r\nSistema: Servicios de teleasistencia a domicilio\r\nTipo: Alta de reclamación\r\nDescripción: Contacto digital 2",
+            "digital": true
+        }
+    ],
+    "clinicalInfo": {
+        "lastUpdateDate": "Hace 7 dias",
+        "problems": [
+            {
+                "problemID": 1,
+                "problemDescription": "Diabetes",
+                "relevant": true
+            },
+            {
+                "problemID": 2,
+                "problemDescription": "Hipertensión",
+                "relevant": false
+            },
+            {
+                "problemID": 3,
+                "problemDescription": "prueba1",
+                "relevant": true
+            },
+            {
+                "problemID": 4,
+                "problemDescription": "prueba2",
+                "relevant": false
+            },
+            {
+                "problemID": 5,
+                "problemDescription": "prueba4",
+                "relevant": true
+            },
+            {
+                "problemID": 6,
+                "problemDescription": "prueba4",
+                "relevant": true
+            },
+            {
+                "problemID": 7,
+                "problemDescription": "prueba4",
+                "relevant": true
+            },
+            {
+                "problemID": 8,
+                "problemDescription": "prueba4",
+                "relevant": true
+            }
+        ],
+        "treatments": [
+            {
+                "treatmentID": 9,
+                "treatmentDescription": "Ibuprofeno"
+            },
+            {
+                "treatmentID": 10,
+                "treatmentDescription": "Paracetamol"
+            }
+        ],
+        "allergies": [
+            {
+                "allergieID": 11,
+                "allergieDescription": "Ácaros del polvo1",
+                "relevant": true
+            },
+            {
+                "allergieID": 12,
+                "allergieDescription": "Polenzzz2",
+                "relevant": false
+            },
+            {
+                "allergieID": 13,
+                "allergieDescription": "Ácaros del polvo3",
+                "relevant": false
+            },
+            {
+                "allergieID": 14,
+                "allergieDescription": "Polen4",
+                "relevant": false
+            },
+            {
+                "allergieID": 15,
+                "allergieDescription": "Ácaros del polvo5",
+                "relevant": false
+            }
+        ],
+        "alerts": [
+            {
+                "alertID": 11,
+                "alertDescription": "polvo1",
+                "relevant": true
+            },
+            {
+                "alertID": 12,
+                "alertDescription": "Polenz2",
+                "relevant": false
+            },
+            {
+                "alertID": 13,
+                "alertDescription": "Ácaros ",
+                "relevant": false
+            },
+            {
+                "alertID": 14,
+                "alertDescription": "Polen4",
+                "relevant": false
+            },
+            {
+                "alertID": 15,
+                "alertDescription": "Ácaros",
+                "relevant": false
+            }
+        ],
+        "backgrounds": [
+            {
+                "medicalHistoryID": 7,
+                "medicalHistoryDescription": "Diabetes"
+            },
+            {
+                "medicalHistoryID": 8,
+                "medicalHistoryDescription": "Apendicitis"
+            }
+        ]
+    }
+}
