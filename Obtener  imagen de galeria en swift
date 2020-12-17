@@ -1,0 +1,22 @@
+ private func getImage(resource: ProfileImage, name: String) {
+        guard let data = resource.encodedImage else { return }
+               guard
+
+                   var imagenGalery = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last,
+                   let convertedData = Data(base64Encoded: data)
+                   else { return }
+
+        imagenGalery.appendPathComponent(name.replacingOccurrences( of: "[-_~/?]", with: "", options: .regularExpression))
+        
+        
+        
+        do {
+            try convertedData.write(to: imagenGalery)
+            guard let vc = view as? UIViewController else {return}
+         
+        } catch {
+           
+            print(error)
+        }
+    
+    }
