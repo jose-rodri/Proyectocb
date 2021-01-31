@@ -1,0 +1,452 @@
+//
+//  EmailViewController.swift
+//  HCR
+//
+//  Created by Jared Perez Vega on 20/8/18.
+//  Copyright (c) 2018 Everis. All rights reserved.
+//
+
+import UIKit
+
+public class PollViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
+
+    @IBOutlet public var tableView: UITableView!
+    @IBOutlet weak public var progressTitleLabel: UILabel!
+    @IBOutlet weak public var progressCounterLabel: UILabel!
+    @IBOutlet weak public var progressBar: UIProgressView!
+    @IBOutlet weak public var nextBackground: UIView!
+    @IBOutlet weak public var nextButton: UIButton!
+    @IBOutlet weak public var progressView: UIView!
+    @IBOutlet weak public var assignButton: UIButton!
+    @IBOutlet weak public var assignLabel: UILabel!
+    @IBOutlet weak public var assignNameLabel: UILabel!
+    @IBOutlet weak public var topInfoView: UIView!
+    @IBOutlet weak public var topInfoStackView: UIStackView!
+    @IBOutlet weak public var exportButton: UIButton!
+    @IBOutlet weak public var previousButton: UIButton!
+    @IBOutlet weak public var heightProgressConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var heightButtosConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var heightViewConstraint: NSLayoutConstraint!
+
+
+    var presenter: PollViewToPresenterProtocol?
+    var nextButtonGradientLayer = CAGradientLayer()
+    var actionBar : ActionBar?
+    var titles : [String] = []
+    var whatTab : Int = 0
+    var menuArray : [MenuQuestionnaire] = []
+    
+    public init() {
+        super.init(nibName: "PollViewController", bundle: Bundle(for: PollViewController.self))
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    let bundleFramework = Bundle(identifier: ConstantsPrivate.BundleIdentity.FRAMEWORK_RHS)
+
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+       
+         titles = []
+        presenter?.updateView()
+        configureView()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let backButton = UIBarButtonItem()
+        backButton.title = ""//actionBar?.name
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        self.navigationItem.title = actionBar?.name?.capitalizingFirstLetter()
+      
+        // push NAVIAGITION BUTTON
+        
+//        var buttonIcon: UIImage
+        let bundleLibrary = Bundle(identifier: ConstantsPrivate.BundleIdentity.FRAMEWORK_RHS)
+//        let closeName = "ic_arrow_email"
+//        buttonIcon = UIImage(named: closeName, in: bundleLibrary, compatibleWith: nil)!
+//
+//        let leftBar = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.done , target: self, action: #selector(backArrowPoll))
+//        leftBar.image = buttonIcon
+//        leftBar.tintColor = UIColor.generalToolbarColorGray
+//        self.navigationItem.leftBarButtonItem = leftBar
+        
+  self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "BACK",
+  style: .plain,
+  target: self,
+  
+  action: #selector(leftHandAction))
+        
+    }
+    
+    @objc func leftHandAction(_ sender: Any){
+        print("1")
+        let keytype = UserDefaults.standard.object(forKey: "keytype") as? String
+        if keytype == "forms"  {
+             print("2")
+             self.presenter?.navigateToPush()
+            
+            
+        } else {
+              print("3")
+            self.presenter?.navigateToPush()
+        }
+        
+    }
+    
+    @objc func clickOnBackBtn(_ sender: Any){
+
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.standard.set(nil, forKey: "keytype")
+    }
+    
+    func backPRUEBA() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc func backArrowPoll(){
+       
+        let keytype = UserDefaults.standard.object(forKey: "keytype") as? String
+        if keytype == "forms"  {
+            self.dismiss(animated: true, completion: {
+                self.presenter?.navigateToPush()
+                (self.navigationController as? NavigationBarPrivate)?.configureBadges()
+            })
+            
+        } else {
+             self.dismiss(animated: true, completion: {
+            (self.navigationController as? NavigationBarPrivate)?.configureBadges()
+            //self.navigationController?.popToRootViewController(animated: true)
+             //self.presenter?.navigateToPush()
+             self.presenter?.navigateToPush()
+            })
+        }
+       
+    }
+    
+ 
+    
+   
+    @objc func addTapped(_ sender:UIBarButtonItem) {
+        
+//        let bundleFramework = Bundle(identifier: ConstantsPrivate.BundleIdentity.FRAMEWORK_RHS)
+//        let cellReuseIdentifier = "MenuViewController"
+//        let viewController = MenuViewController(nibName: cellReuseIdentifier , bundle: bundleFramework)
+        let viewController = MenuViewController()
+        viewController.pollVc = self
+        viewController.menuArray = menuArray
+        viewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        viewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(viewController, animated: true, completion: nil)
+        
+    }
+    
+    public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    
+    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+
+    
+
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 50, right: 0)
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: nextBackground.bounds.height, right: 0)
+        }
+    }
+
+    override public func viewDidLayoutSubviews() {
+        nextButtonGradientLayer.frame = nextBackground.bounds
+    }
+
+    private func configureView() {
+        let bundleLibrary = Bundle(identifier: ConstantsPrivate.BundleIdentity.FRAMEWORK_RHS)
+
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: nextBackground.bounds.height, right: 0)
+
+        
+        topInfoView.layer.shadowColor = ConstantsPrivate.Colors.blackTwo.cgColor
+        topInfoView.layer.shadowOffset = CGSize.zero
+       
+
+        progressTitleLabel.textColor = ConstantsPrivate.Colors.niceBlue
+        progressTitleLabel.text = "poll_in_process".localized()
+
+        assignLabel.text = "poll_assigned_to".localized()
+        assignLabel.textColor = ConstantsPrivate.Colors.brownishGrey
+        assignNameLabel.textColor = ConstantsPrivate.Colors.blackTwo
+
+        progressBar.layer.cornerRadius = 6
+        progressBar.clipsToBounds = true
+        progressBar.layer.sublayers?[1].cornerRadius = 6
+        progressBar.subviews[1].clipsToBounds = true
+        progressBar.progress = 0
+
+        assignButton.layer.borderColor = ConstantsPrivate.Colors.baseColour().cgColor
+        assignButton.layer.borderWidth = 1
+        assignButton.tintColor = ConstantsPrivate.Colors.baseColour()// Constants.Colors.viridian
+        assignButton.layer.cornerRadius = 4
+        assignButton.setImage(ConstantsPrivate.Images.formsActionsAssign, for: .normal)
+        assignButton.imageView?.tintColor = ConstantsPrivate.Colors.baseColour()
+        assignButton.titleEdgeInsets.left = 8
+        assignButton.imageEdgeInsets.left = -8
+        assignButton.setTitle("assign_poll".localized(), for: .normal)
+        assignButton.setTitleColor(ConstantsPrivate.Colors.lightColour(), for: .normal)
+
+       
+        exportButton.backgroundColor = ConstantsPrivate.Colors.baseColour()
+        assignButton.tintColor = UIColor.white
+        
+        exportButton.layer.cornerRadius = 4
+        
+        let calendarName = "export"
+        let exportImg = UIImage(named: calendarName, in: bundleLibrary, compatibleWith: nil)!
+        let image = exportImg.withRenderingMode(.alwaysTemplate)
+        
+        exportButton.setImage(image, for: .normal)
+        exportButton.titleEdgeInsets.left = 8
+        exportButton.imageEdgeInsets.left = -8
+        exportButton.setTitle("export_poll".localized(), for: .normal)
+
+      
+       
+        let nextName = "next"
+        var nextImg = UIImage(named: nextName, in: bundleLibrary, compatibleWith: nil)!
+        nextImg = nextImg.maskWithColor(color: ConstantsPrivate.Colors.lightColour())!
+        
+        nextButton.setImage(nextImg, for: .normal)
+        
+        nextButton.titleEdgeInsets.left = 15
+        nextButton.imageEdgeInsets.left = -15
+        nextButton.setTitle("poll_next".localized(), for: .normal)
+        nextButton.backgroundColor = ConstantsPrivate.Colors.base_blue
+        nextBackground.setNeedsDisplay()
+
+        nextButtonGradientLayer.frame = nextBackground.bounds
+        nextButtonGradientLayer.colors = [UIColor(white: 1, alpha: 0).cgColor, UIColor.white.cgColor]
+        nextButtonGradientLayer.locations = [0.0, 0.3]
+
+        nextBackground.layer.insertSublayer(nextButtonGradientLayer, at: 0)
+    }
+    @IBAction func previousButtonTapped(_ sender: Any) {
+        nextButton.setTitle("next".localized(), for: .normal)
+        progressTitleLabel.textColor = ConstantsPrivate.Colors.niceBlue
+        progressTitleLabel.text = "poll_in_process".localized()
+        
+        presenter?.scrollToBeforetRow()
+    }
+    
+    
+    @IBAction func nextButtonTapped(_ sender: UIButton) {
+        if let solution = presenter?.saveQuestionSolution(), solution {
+            presenter?.manageSubquestions()
+            presenter?.scrollToNextRow()
+        }
+    }
+    
+    func showFormalization(_ title: String?, _ description: String?, _ formalization: String?) {
+        var message: String = ""
+        if let description = description {
+            message += "description".localized() + ": \(description)"
+        }
+        if let formalization = formalization {
+            message += "\n" + "formalization".localized() + ": \(formalization)"
+        }
+        UIAlertController().showInfoAlert(title: title ?? "", message: message)
+    }
+    //boton cancel
+    func backRootVc() {
+        let keytype = UserDefaults.standard.object(forKey: "keytype") as? String
+        if keytype == "forms"  {
+            
+//            self.dismiss(animated: true, completion: {
+//                self.presenter?.navigateToPush()
+//                (self.navigationController as? NavigationBarPrivate)?.configureBadges()
+//            })
+            
+           self.presenter?.navigateToPush()
+            
+            
+            /*dismiss(animated: true) {
+                self.pollViewController?.showFormalization(self.titleForm, self.descriptionForm, self.formalization)
+            }*/
+            
+        } else {
+             self.presenter?.navigateToPush()
+//            self.dismiss(animated: true, completion: {
+//                
+//                (self.navigationController as? NavigationBarPrivate)?.configureBadges()
+//                //self.navigationController?.popToRootViewController(animated: true)
+//                self.presenter?.navigateToPush()
+//            })
+            
+        }
+    }
+    
+    
+    @IBAction func assignButtonTapped(_ sender: UIButton) {
+        presenter?.assignationAction()
+    }
+
+    @IBAction func exportButtonTapped(_ sender: Any) {
+        presenter?.exportAction()
+    }
+    
+    
+    
+
+}
+
+extension PollViewController: PollPresenterToViewProtocol {
+    
+    func toastMessage(title: String) {
+           self.view.makeToast(title)
+       }
+       
+       
+       func showTermsAndCondition(legalNotice: String, title: String?, description: String?, formalization: String?) {
+          //let bundleFramework = Bundle(identifier: ConstantsPrivate.BundleIdentity.FRAMEWORK_RHS)
+           let viewController = TermsAndConditionsViewController()
+           
+           viewController.legalNotice = legalNotice
+           viewController.pollViewController = self
+           viewController.titleForm = title ?? ""
+           viewController.descriptionForm = description ?? ""
+           viewController.formalization = formalization ?? ""
+           viewController.titleQues = actionBar?.name ?? ""
+           viewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+           viewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+           self.present(viewController, animated: true, completion: nil)
+       }
+
+    
+    
+    func increaseProgress(to progress: Float, of: Float) {
+        progressCounterLabel.text = "\(Int(progress))/\(Int(of))"
+        progressBar.setProgress(progress/of, animated: true)
+    }
+
+    func completePoll() {
+
+         progressTitleLabel.textColor = ConstantsPrivate.Colors.baseColour()
+         progressTitleLabel.text = "poll_finished".localized()
+        progressBar.progressTintColor = ConstantsPrivate.Colors.baseColour()
+         nextButton.backgroundColor = ConstantsPrivate.Colors.baseColour()
+         nextButton.setTitle("poll_finish".localized(), for: .normal)
+       
+    }
+
+    func goBack() {
+  
+        let keytype = UserDefaults.standard.object(forKey: "keytype") as? String
+        if keytype == "forms"  {
+            self.presenter?.navigateToPush()
+//            self.dismiss(animated: true, completion: {
+//                self.presenter?.navigateToPush()
+//                (self.navigationController as? NavigationBarPrivate)?.configureBadges()
+//
+//            })
+           
+        } else {
+ self.presenter?.navigateToPush()
+            //            self.dismiss(animated: true, completion: {
+//                self.navigationController?.popViewController(animated: true)
+//                (self.navigationController as? NavigationBarPrivate)?.configureBadges()
+//            })
+        }
+    }
+
+    func displayMissingAnswerAlert(alert: UIAlertController) {
+       self.view.makeToast("poll_answer_the_question".localized())
+    }
+
+    func setWriteState(tab:PollTab) {
+        let bundleLibrary = Bundle(identifier: ConstantsPrivate.BundleIdentity.FRAMEWORK_RHS)
+        topInfoStackView.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        topInfoStackView.isLayoutMarginsRelativeArrangement = true
+        progressView.isHidden = false
+        assignButton.isHidden = true
+        exportButton.isHidden = true
+        nextBackground.isHidden = false
+        switch tab {
+        case .movements:
+            menuArray.append(MenuQuestionnaire(code: 1, name: "export_poll".localized()))
+            let menu_point = "menu-point"
+            navigationItem.rightBarButtonItem =  UIBarButtonItem(image: UIImage(named: menu_point , in: bundleLibrary, compatibleWith: nil ), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(addTapped(_:)))
+        case .user:
+            break
+        case .assigned:
+              menuArray.append(MenuQuestionnaire(code: 1, name: "export_poll".localized()))
+             let menu_point = "menu-point"
+              navigationItem.rightBarButtonItem =  UIBarButtonItem(image: UIImage(named: menu_point, in: bundleLibrary, compatibleWith: nil), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(addTapped(_:)))
+        }
+        
+    }
+
+    func setProfessionalViewState(_ userInfo: String) {
+        let bundleLibrary = Bundle(identifier: ConstantsPrivate.BundleIdentity.FRAMEWORK_RHS)
+        topInfoStackView.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        topInfoStackView.isLayoutMarginsRelativeArrangement = true
+        assignLabel.isHidden = false
+        assignNameLabel.isHidden = false
+        assignNameLabel.text = userInfo
+        assignButton.isHidden = true
+        nextButton.isHidden = true
+        nextBackground.isHidden = false
+        heightViewConstraint.constant = 0
+        assignLabel.isHidden = true
+        assignNameLabel.isHidden = true
+        heightProgressConstraint.constant = 0
+        previousButton.isHidden = true
+        
+       menuArray.append(MenuQuestionnaire(code: 1, name: "export_poll".localized()))
+        let menu_point = "menu-point"
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(image: UIImage(named: menu_point, in: bundleLibrary, compatibleWith: nil), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(addTapped(_:)))
+        
+    }
+    func setUserAssignState() {
+           nextButton.isHidden = true
+           nextBackground.isHidden = true
+           previousButton.isHidden = true
+           topInfoView.isHidden = true
+           heightButtosConstraint.constant = 0
+           heightProgressConstraint.constant = 0
+           heightViewConstraint.constant = 0
+       }
+
+
+    func setProfessionalAssignState() {
+        let bundleLibrary = Bundle(identifier: ConstantsPrivate.BundleIdentity.FRAMEWORK_RHS)
+        nextButton.isHidden = true
+       nextBackground.isHidden = true
+       previousButton.isHidden = true
+       topInfoView.isHidden = true
+       heightButtosConstraint.constant = 0
+       heightProgressConstraint.constant = 0
+       heightViewConstraint.constant = 0
+       
+      
+        menuArray.append(MenuQuestionnaire(code: 1, name: "export_poll".localized()))
+        menuArray.append(MenuQuestionnaire(code: 2, name: "assign_user".localized()))
+                let menu_point = "menu-point"
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(image: UIImage(named: menu_point, in: bundleLibrary, compatibleWith: nil), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(addTapped(_:)))
+
+      
+    }
+}
